@@ -1,0 +1,8 @@
+{
+  "scripts": {},
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^3.13.1"
+  },
+  "name": "ar-components"
+}
