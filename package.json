@@ -1,8 +1,14 @@
 {
-  "scripts": {},
+  "name": "ar-components",
+  "scripts": {
+    "bootstrap": "lerna bootstrap --hoist && lerna clean --yes"
+  },
   "license": "MIT",
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
     "lerna": "^3.13.1"
-  },
-  "name": "ar-components"
+  }
 }
