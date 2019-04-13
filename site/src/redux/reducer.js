@@ -16,7 +16,7 @@ export const reducer = (state = INITIAL_STATE, action) => {
         case NAVIGATE:
             return {
                 ...state,
-                location: action.location,
+                routeData: action.routeData,
             };
         case REQUEST_COMPONENTS:
             return {
@@ -30,8 +30,8 @@ export const reducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 components: {
-                    isFetching: false,
                     value: action.components,
+                    isFetching: false,
                 },
             };
         default:

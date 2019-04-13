@@ -1,12 +1,12 @@
 import { LitElement, html } from "lit-element";
 import { connect } from "pwa-helpers";
 import store from "../redux/store";
+import sharedStyles from "../shared/styles";
 
 import "@polymer/iron-icon";
 import "@polymer/iron-icons";
 import "@polymer/iron-icons/image-icons";
 import "@polymer/paper-icon-button";
-import { loadComponents } from "../redux/actions";
 
 class HomePage extends connect(store)(LitElement) {
     static get properties() {
@@ -17,6 +17,7 @@ class HomePage extends connect(store)(LitElement) {
 
     render() {
         return html`
+            ${sharedStyles}
             <style>
                 :host {
                     display: flex;
@@ -26,15 +27,9 @@ class HomePage extends connect(store)(LitElement) {
                 }
 
                 .space {
-                    box-sizing: border-box;
-                    display: flex;
                     flex-direction: row;
                     flex-wrap: wrap;
-                    margin: 24px 0;
-                    padding: 36px;
-                    width: 100%;
                     justify-content: space-evenly;
-                    max-width: 960px;
                 }
 
                 #header {
@@ -45,9 +40,10 @@ class HomePage extends connect(store)(LitElement) {
                     text-align: center;
                 }
 
-                #footer {
+                .footer {
                     font-size: 14px;
                     margin: 6vh 0 4vh 0;
+                    text-align: center;
                 }
 
                 .card {
@@ -67,23 +63,11 @@ class HomePage extends connect(store)(LitElement) {
                     align-items: baseline;
                 }
 
-                .card .title {
-                    font-size: 27px;
-                    font-weight: 500;
-                    margin: 0;
-                }
-
                 .card:hover {
                     background-color: rgba(0, 0, 0, 0.01);
                     box-shadow: 0 8px 56px rgba(0, 0, 0, 0.1), 0 4px 24px rgba(0, 0, 0, 0.07);
                     transform: perspective(1px) scale(1.05);
                     transition: background-color 0.2s 0.3s, box-shadow 0.7s 0.3s, transform 0.4s 0.3s;
-                }
-
-                .card .version {
-                    color: rgba(0, 0, 0, 0.42);
-                    font-size: 14px;
-                    margin: 0 12px;
                 }
 
                 .card p {
@@ -103,27 +87,15 @@ class HomePage extends connect(store)(LitElement) {
                     transform: scale(1);
                     transition: opacity 1.2s 0.3s;
                 }
-
-                paper-icon-button {
-                    color: rgba(0, 0, 0, 0.6);
-                }
-
-                paper-icon-button:hover {
-                    color: black;
-                }
-
-                a.icon {
-                    text-decoration: none;
-                }
             </style>
             <div id="header">
-                <h1 style="font-weight: 500">ar-components</h1>
+                <h1>ar-components</h1>
                 <p style="color: rgba(0, 0, 0, 0.54)">Built proudly on lit-html</p>
             </div>
             <div class="space">
                 ${this.components.map(HomePage.renderCard)}
             </div>
-            <div id="footer">
+            <div class="footer">
                 Making web better one component at a time
             </div>
         `;
@@ -133,18 +105,12 @@ class HomePage extends connect(store)(LitElement) {
         this.components = state.components.value;
     }
 
-    constructor() {
-        super();
-
-        store.dispatch(loadComponents());
-    }
-
     static renderCard(component) {
         return html`
             <div class="card">
                 <div class="header">
-                    <div class="title">${component.shortName}</div>
-                    <div class="version show-on-hover">${component.version}</div>
+                    <div class="component-title">${component.shortName}</div>
+                    <div class="component-version show-on-hover">${component.version}</div>
                 </div>
                 <div class="content">
                     <p>${component.description}</p>
@@ -154,7 +120,7 @@ class HomePage extends connect(store)(LitElement) {
                     <a class="icon" target="_blank" href=${component.repositoryUrl}>
                         <paper-icon-button class="show-on-hover" icon="icons:code" title="Show repository"></paper-icon-button>
                     </a>
-                    <a class="icon" target="_blank" href="#">
+                    <a class="icon" href="components/${component.shortName}/demo">
                         <paper-icon-button class="show-on-hover" icon="image:remove-red-eye" title="Show demo"></paper-icon-button>
                     </a>
                 </div>

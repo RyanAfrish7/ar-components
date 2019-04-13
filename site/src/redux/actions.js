@@ -1,7 +1,7 @@
 export const NAVIGATE = "NAVIGATE";
-export const navigate = location => ({
+export const navigate = routeData => ({
     type: NAVIGATE,
-    location,
+    routeData,
 });
 
 export const REQUEST_COMPONENTS = "REQUEST_COMPONENTS";

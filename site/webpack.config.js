@@ -21,5 +21,10 @@ module.exports = {
     output: {
         filename: "[name].bundle.js",
         path: path.resolve(__dirname, "build"),
+        publicPath: "/",
     },
+    devServer: {
+        historyApiFallback: true,
+    },
+    devtool: "source-map",
 };

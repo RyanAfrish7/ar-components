@@ -1,14 +1,19 @@
 {
+  "name": "@ryanafrish7/ar-components-site",
+  "private": true,
   "main": "index.html",
   "scripts": {
     "serve": "webpack-dev-server"
   },
   "dependencies": {
+    "@polymer/iron-demo-helpers": "^3.1.0",
     "@polymer/iron-icon": "^3.0.1",
     "@polymer/iron-icons": "^3.0.1",
     "@polymer/paper-icon-button": "^3.0.2",
+    "@ryanafrish7/ar-picker": "^0.0.1-alpha.2",
     "lit-element": "^2.1.0",
     "lit-html": "^1.0.0",
+    "path-parser": "^4.2.0",
     "pwa-helpers": "^0.9.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
