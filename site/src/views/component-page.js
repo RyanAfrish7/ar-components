@@ -56,7 +56,8 @@ class ComponentPage extends connect(store)(LitElement) {
                 <div class="content">
                     <p>${this.component.description}</p>
                     <div class="demo">
-                        ${until(import(`../demos/${this.component.shortName}`).then(module => module.default), html`loading..`)}
+                        ${until(import(`../demos/${this.component.shortName}`)
+                            .then(module => module.default), html`loading..`)}
                     </div>
                 </div>
             </div>
@@ -67,7 +68,8 @@ class ComponentPage extends connect(store)(LitElement) {
         this.networkActivity = state.components.isFetching;
         if (!this.networkActivity) {
             this.components = state.components.value;
-            this.component = this.components.find(component => component.shortName === state.routeData.component);
+            this.component = this.components
+                .find(component => component.shortName === state.routeData.component);
         }
     }
 }
