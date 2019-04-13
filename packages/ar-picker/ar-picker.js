@@ -110,6 +110,10 @@ class Picker extends LitElement {
                     margin: 0;
                 }
 
+                #wheel {
+                    height: 100%;
+                }
+
                 .item {
                     box-sizing: border-box;
                     min-height: var(--item-height);
@@ -174,12 +178,9 @@ class Picker extends LitElement {
             return this._animating;
         }
 
-        const container = this.shadowRoot.querySelector("#container");
-        const wheel = this.shadowRoot.querySelector("#wheel");
-
         // sentinel checks
         if ((this._currentScroll === 0 && this._pendingScroll < 0)
-            || (this._currentScroll + container.offsetHeight >= wheel.offsetHeight
+            || (this._currentScroll >= ITEM_HEIGHT * (this.items.length - 1)
                 && this._pendingScroll > 0)) {
             // hard absorption of any remaining force. TODO momentum scrolling
             this._pendingScroll = 0;
@@ -233,7 +234,7 @@ class Picker extends LitElement {
         dx = Math.sign(this._pendingScroll) * Math.min(Math.abs(this._pendingScroll), dx);
 
         // animate scroll
-        this._currentScroll = Math.max(0, Math.min(wheel.offsetHeight, this._currentScroll + dx));
+        this._currentScroll = Math.max(0, Math.min(ITEM_HEIGHT * this.items.length, this._currentScroll + dx));
         if (approxEq(this._currentScroll, Math.round(this._currentScroll))) {
             this._currentScroll = Math.round(this._currentScroll);
         }
@@ -259,11 +260,19 @@ class Picker extends LitElement {
 
             if (Math.abs(i * ITEM_HEIGHT - this._currentScroll) < container.offsetHeight / 2) {
                 angle = (i * ITEM_HEIGHT - this._currentScroll) / (container.offsetHeight / 2)
-            * Math.PI / 2;
+                    * Math.PI / 2;
                 dy = (container.offsetHeight / 2) * Math.sin(angle) - i * ITEM_HEIGHT;
                 scale = 1 + 0.4 * (1 - Math.abs(angle / Math.PI * 2));
 
                 item.classList.toggle("selected", Math.abs(i * ITEM_HEIGHT - this._currentScroll) < ITEM_HEIGHT / 2);
+            }
+
+            if (i * ITEM_HEIGHT - this._currentScroll >= container.offsetHeight / 2) {
+                dy += ITEM_HEIGHT;
+            }
+
+            if (this._currentScroll - i * ITEM_HEIGHT >= container.offsetHeight / 2) {
+                dy -= ITEM_HEIGHT;
             }
 
             item.style.transform = `translateY(${dy}px) rotateX(${angle}rad) scale(${scale})`;
