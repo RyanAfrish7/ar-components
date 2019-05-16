@@ -14,10 +14,13 @@ module.exports = {
         sourceType: "module",
     },
     rules: {
-        "quotes": ["error", "double"],
-        "no-underscore-dangle": ["error", { "allowAfterThis": true }],
-        "no-param-reassign": ["error", { "props": false }],
         "class-methods-use-this": ["error", { "exceptMethods": ["renderStyle"] }],
-        "indent": ["error", 4, { "ignoredNodes": ["TemplateLiteral *"], "SwitchCase": 1 }]
+        "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+        "indent": ["error", 4, { "ignoredNodes": ["TemplateLiteral *"], "SwitchCase": 1 }],
+        "lines-between-class-members": ["error", { "exceptAfterSingleLine": true }],
+        "no-param-reassign": ["error", { "props": false }],
+        "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+        "quote-props": ["error", "consistent-as-needed"],
+        "quotes": ["error", "double"],
     },
 };
