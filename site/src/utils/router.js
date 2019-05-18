@@ -16,7 +16,7 @@ export class Router {
             const isLhsComponentTemplated = lhsComponents[i].startsWith(":");
             const isRhsComponentTemplated = rhsComponents[i].startsWith(":");
 
-            if ((isLhsComponentTemplated && !isRhsComponentTemplated) 
+            if ((isLhsComponentTemplated && !isRhsComponentTemplated)
                 || (!isLhsComponentTemplated && isRhsComponentTemplated)) {
                 if (isLhsComponentTemplated) {
                     return 1;

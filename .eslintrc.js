@@ -17,7 +17,7 @@ module.exports = {
         "class-methods-use-this": ["error", { "exceptMethods": ["renderStyle"] }],
         "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
         "indent": ["error", 4, { "ignoredNodes": ["TemplateLiteral *"], "SwitchCase": 1 }],
-        "lines-between-class-members": ["error", { "exceptAfterSingleLine": true }],
+        "lines-between-class-members": ["error", "always", { exceptAfterSingleLine: true }],
         "no-param-reassign": ["error", { "props": false }],
         "no-underscore-dangle": ["error", { "allowAfterThis": true }],
         "quote-props": ["error", "consistent-as-needed"],

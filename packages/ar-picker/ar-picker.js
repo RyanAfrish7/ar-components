@@ -234,7 +234,10 @@ class Picker extends LitElement {
         dx = Math.sign(this._pendingScroll) * Math.min(Math.abs(this._pendingScroll), dx);
 
         // animate scroll
-        this._currentScroll = Math.max(0, Math.min(ITEM_HEIGHT * this.items.length, this._currentScroll + dx));
+        this._currentScroll = Math.max(
+            0,
+            Math.min(ITEM_HEIGHT * this.items.length, this._currentScroll + dx),
+        );
         if (approxEq(this._currentScroll, Math.round(this._currentScroll))) {
             this._currentScroll = Math.round(this._currentScroll);
         }
