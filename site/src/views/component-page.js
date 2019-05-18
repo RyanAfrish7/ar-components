@@ -1,10 +1,11 @@
 import { LitElement, html } from "lit-element";
 import { connect } from "pwa-helpers";
-import { until } from "lit-html/directives/until";
+import { render } from "lit-html";
+
 import store from "../redux/store";
-import sharedStyles from "../shared/styles";
 import "@polymer/paper-icon-button";
 import "@polymer/iron-icons";
+import styles from "../shared/styles";
 
 class ComponentPage extends connect(store)(LitElement) {
     static get properties() {
@@ -17,7 +18,7 @@ class ComponentPage extends connect(store)(LitElement) {
 
     render() {
         return html`
-            ${sharedStyles}
+            ${styles}
             <style>
                 :host {
                     display: flex;
@@ -50,18 +51,32 @@ class ComponentPage extends connect(store)(LitElement) {
             </div>
             <div id="space">
                 <div class="header">
-                    <div class="component-title" style="margin: 0">${this.component.shortName}</div>
+                    <div class="component-title" style="margin: 0">${this.component.getShortName()}</div>
                     <div class="component-version">${this.component.version}</div> 
                 </div>
                 <div class="content">
                     <p>${this.component.description}</p>
-                    <div class="demo">
-                        ${until(import(`../demos/${this.component.shortName}`)
-                            .then(module => module.default), html`loading..`)}
-                    </div>
+                    <div id="demo"></div>
                 </div>
             </div>
         `;
+    }
+
+    async updated() {
+        const demo = this.shadowRoot.querySelector("#demo");
+        if (!demo.shadowRoot) {
+            demo.attachShadow({ mode: "open" });
+        }
+
+        const template = await import(`../demos/${this.component.getShortName()}`).then(module => module.default(demo.shadowRoot));
+
+        render(
+            html`
+                ${styles}
+                ${template}
+            `,
+            demo.shadowRoot,
+        );
     }
 
     stateChanged(state) {
@@ -69,7 +84,7 @@ class ComponentPage extends connect(store)(LitElement) {
         if (!this.networkActivity) {
             this.components = state.components.value;
             this.component = this.components
-                .find(component => component.shortName === state.routeData.component);
+                .find(component => component.getShortName() === state.routeData.component);
         }
     }
 }

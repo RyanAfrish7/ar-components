@@ -109,18 +109,15 @@ class HomePage extends connect(store)(LitElement) {
         return html`
             <div class="card">
                 <div class="header">
-                    <div class="component-title">${component.shortName}</div>
+                    <div class="component-title">${component.getShortName()}</div>
                     <div class="component-version show-on-hover">${component.version}</div>
                 </div>
                 <div class="content">
                     <p>${component.description}</p>
-                    <a class="icon" target="_blank" href=${component.repositoryUrl}>
-                        <paper-icon-button class="show-on-hover" icon="icons:description" title="Show documentation"></paper-icon-button>
-                    </a>
-                    <a class="icon" target="_blank" href=${component.repositoryUrl}>
+                    <a class="icon" target="_blank" href=${component.getRepositoryUrl()}>
                         <paper-icon-button class="show-on-hover" icon="icons:code" title="Show repository"></paper-icon-button>
                     </a>
-                    <a class="icon" href="components/${component.shortName}/demo">
+                    <a class="icon" href="components/${component.getShortName()}/demo">
                         <paper-icon-button class="show-on-hover" icon="image:remove-red-eye" title="Show demo"></paper-icon-button>
                     </a>
                 </div>

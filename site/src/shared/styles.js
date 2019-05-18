@@ -2,7 +2,7 @@ import { html } from "lit-element";
 
 export default html`
     <style>
-        h1, h2, h3 {
+        h1, h2, h3, h4, h5 {
             font-weight: 500;
         }
 
@@ -48,6 +48,12 @@ export default html`
             color: rgba(0, 0, 0, 0.42);
             font-size: 14px;
             margin: 0 12px;
+        }
+
+        code {
+            background-color: rgba(0, 0, 0, 0.1);
+            color: rgba(0, 0, 0, 0.87);
+            font-size: 14px;
         }
     </style>
 `;
