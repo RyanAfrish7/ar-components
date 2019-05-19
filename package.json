@@ -1,8 +1,9 @@
 {
   "name": "ar-components",
   "scripts": {
-    "bootstrap": "lerna bootstrap --hoist && lerna clean --yes",
-    "setup-site": "node scripts/generate-site-data --packages-directory ./packages --output-directory ./site/data"
+    "bootstrap": "lerna bootstrap --hoist",
+    "setup-site": "node scripts/generate-site-data --packages-directory ./packages --output-directory ./site/data",
+    "lint": "eslint ."
   },
   "private": true,
   "license": "MIT",
