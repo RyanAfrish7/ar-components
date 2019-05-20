@@ -3,7 +3,10 @@
   "private": true,
   "main": "index.html",
   "scripts": {
-    "serve": "webpack-dev-server"
+    "setup": "node --no-warnings scripts/generate-site-data --packages-directory ../packages --output-directory ./data",
+    "serve": "webpack-dev-server",
+    "build": "webpack",
+    "clean": "rm -rf data && rm -rf build"
   },
   "dependencies": {
     "@polymer/iron-demo-helpers": "^3.1.0",
@@ -20,7 +23,10 @@
   },
   "devDependencies": {
     "clean-webpack-plugin": "^2.0.1",
+    "copy-webpack-plugin": "^5.0.3",
     "html-webpack-plugin": "^3.2.0",
+    "minimist": "^1.2.0",
+    "node-fetch": "^2.6.0",
     "polymer-cli": "^1.9.5",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",

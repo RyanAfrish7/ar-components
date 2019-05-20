@@ -2,7 +2,6 @@
   "name": "ar-components",
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
-    "setup-site": "node scripts/generate-site-data --packages-directory ./packages --output-directory ./site/data",
     "lint": "eslint ."
   },
   "private": true,
@@ -12,9 +11,7 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
-    "lerna": "^3.13.1",
-    "minimist": "^1.2.0",
-    "node-fetch": "^2.5.0"
+    "lerna": "^3.13.1"
   },
   "dependencies": {},
   "repository": {
