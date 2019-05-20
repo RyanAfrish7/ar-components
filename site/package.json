@@ -1,5 +1,5 @@
 {
-  "name": "@ryanafrish7/ar-components-site",
+  "name": "site",
   "private": true,
   "main": "index.html",
   "scripts": {
