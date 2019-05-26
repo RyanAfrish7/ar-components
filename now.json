@@ -1,0 +1,14 @@
+{
+    "version": 2,   
+    "name": "ar-components",
+    "builds": [
+        {
+            "src": "scripts/build-site.sh",
+            "use": "@now/static-build",
+            "config": { "distDir": "site/build" }
+        }
+    ],
+    "engines": {
+        "node": "^10.15.3"
+    }
+}
