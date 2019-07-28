@@ -18,6 +18,6 @@ export default class ComponentModel {
     }
 
     getRepositoryUrl() {
-        return `${this.repository.url}/tree/master/${this.repository.directory}`;
+        return `${this.repository.url.replace(/.git$/, "")}/tree/master/${this.repository.directory}`;
     }
 }
