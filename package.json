@@ -2,6 +2,7 @@
   "name": "ar-components",
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
+    "link": "lerna link --force-local",
     "lint": "eslint ."
   },
   "private": true,
